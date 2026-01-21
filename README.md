@@ -1,93 +1,114 @@
-# Decentralized Influencer Marketing Platform
+# Decentralized Campaign & Influencer Rewards Platform
 
+> **Status**: Phase 2 Complete (Smart Contract deployed, Frontend & Backend Connected)  
+> **Blockchain**: Sepolia Testnet  
+> **Contract Address**: `0xf8e81D47203A594245E36C48e151709F0C19fBe8`
 
+This file contains **everything** your partner needs to run this project on their computer.
 
-## Getting started
+---
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## � STEP 1: Configure Keys (DO THIS FIRST)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Before running any code, you must set up the secret keys.
 
-## Add your files
+1.  Open this file in your code editor:
+    👉 `backend/src/main/resources/application.properties`
 
-* [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+2.  You will see 3 lines waiting for your keys. Change them to your own values:
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/omkapadiya16/decentralized-influencer-marketing-platform.git
-git branch -M main
-git push -uf origin main
-```
+    ```properties
+    # 1. Get a free API Key from alchemy.com (Select 'Ethereum Sepolia')
+    web3.rpc-url=https://eth-sepolia.g.alchemy.com/v2/YOUR_ALCHEMY_KEY
+    
+    # 2. Your Wallet Private Key (Must have some Sepolia ETH)
+    web3.private-key=YOUR_PRIVATE_KEY_HERE
+    
+    # 3. The Smart Contract Address (Already set, but checking doesn't hurt)
+    web3.contract-address=0xf8e81D47203A594245E36C48e151709F0C19fBe8
+    ```
 
-## Integrate with your tools
+---
 
-* [Set up project integrations](https://gitlab.com/omkapadiya16/decentralized-influencer-marketing-platform/-/settings/integrations)
+## 🧠 STEP 2: Run the Backend (Server)
 
-## Collaborate with your team
+Open your **Terminal** (Command Prompt) and run these commands **one by one**:
 
-* [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+1.  Go into the backend folder:
+    ```bash
+    cd backend
+    ```
 
-## Test and Deploy
+2.  Install all Java libraries (do this once):
+    ```bash
+    mvn clean install
+    ```
 
-Use the built-in continuous integration in GitLab.
+3.  Start the server:
+    ```bash
+    mvn spring-boot:run
+    ```
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+✅ **Success?** You will see a message saying: `Connected to Contract: 0xf8e...` and `Started InfluencerMarketingApplication`.
+❌ **Keep this terminal open!** Do not close it.
 
-***
+---
 
-# Editing this README
+## 🎨 STEP 3: Run the Frontend (Website)
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Open a **NEW Terminal window** (keep the backend one running) and run these:
 
-## Suggestions for a good README
+1.  Go into the frontend folder:
+    ```bash
+    cd frontend
+    ```
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+2.  Install all JavaScript libraries (do this once):
+    ```bash
+    npm install
+    ```
 
-## Name
-Choose a self-explaining name for your project.
+3.  Start the website:
+    ```bash
+    npm run dev
+    ```
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+✅ **Success?** It will say: `Local: http://localhost:5173/`.
+👉 Open that link in your Chrome browser.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+---
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## 🎮 How to Test (For your Partner)
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+1.  **Connect Wallet**:
+    *   Click the "Connect Wallet" button.
+    *   **MetaMask** will pop up. Approve the connection.
+    *   *Note*: Ensure your MetaMask is on the **Sepolia Testnet**.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+2.  **Join the Campaign**:
+    *   In the text box, type your X (Twitter) handle.
+    *   ⚠️ **IMPORTANT**: You MUST include the `@` symbol (e.g., `@omm_43`).
+    *   Click "Join Campaign".
+    *   Confirm the transaction in MetaMask.
+    *   Wait ~15 seconds for the blockchain to update. The UI will change to "Participating".
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+---
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## 📂 Project Structure (For Reference)
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+*   `backend/`: The Java Logic (Spring Boot + Web3j).
+*   `frontend/`: The Website (React + Tailwind).
+*   `contracts/`: The Smart Contract code (`InfluencerCampaign.sol`).
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+---
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+## 🛠 Troubleshooting Common Errors
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+*   **Alert: "Please correct twitter handle format"**: 
+    *   You forgot the `@`. Type `@username`.
+*   **Terminal Error: "mvn: command not found"**: 
+    *   You need to install **Maven** and **Java**.
+*   **Terminal Error: "npm: command not found"**: 
+    *   You need to install **Node.js**.
+*   **Backend Error: "Transaction Reverted"**: 
+    *   Your wallet (Private Key) has 0 Sepolia ETH. Go to a **Sepolia Faucet** to get free test money.
