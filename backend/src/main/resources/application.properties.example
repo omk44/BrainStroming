@@ -1,0 +1,16 @@
+server.port=8082
+spring.application.name=influencer-marketing-backend
+
+# Web3j Configuration
+# INSTRUCTIONS: Copy this file to 'application.properties' and fill in your actual values
+# DO NOT commit application.properties to git!
+
+# Get your Alchemy API key from: https://www.alchemy.com/
+web3.rpc-url=https://eth-sepolia.g.alchemy.com/v2/YOUR_ALCHEMY_API_KEY
+
+# Your MetaMask wallet private key (KEEP THIS SECRET!)
+# Export from MetaMask: Account Details > Export Private Key
+web3.private-key=YOUR_WALLET_PRIVATE_KEY_HERE
+
+# Your deployed smart contract address on Sepolia
+web3.contract-address=0xYOUR_CONTRACT_ADDRESS_HERE

@@ -1,114 +1,127 @@
-# Decentralized Campaign & Influencer Rewards Platform
+# BrainStroming - Decentralized Influencer Marketing Platform
 
-> **Status**: Phase 2 Complete (Smart Contract deployed, Frontend & Backend Connected)  
-> **Blockchain**: Sepolia Testnet  
-> **Contract Address**: `0xf8e81D47203A594245E36C48e151709F0C19fBe8`
+> **⚠️ SECURITY NOTICE**: This repository does not contain sensitive credentials. You must configure your own API keys and private keys locally.
 
-This file contains **everything** your partner needs to run this project on their computer.
+## 🚀 Quick Start
 
----
+### Prerequisites
+- Java 21+
+- Node.js 18+
+- Maven
+- MetaMask wallet with Sepolia ETH
 
-## � STEP 1: Configure Keys (DO THIS FIRST)
+### 1️⃣ Clone the Repository
+```bash
+git clone git@github.com:omk44/BrainStroming.git
+cd BrainStroming
+```
 
-Before running any code, you must set up the secret keys.
+### 2️⃣ Configure Backend Secrets
 
-1.  Open this file in your code editor:
-    👉 `backend/src/main/resources/application.properties`
+**IMPORTANT:** Create your own configuration file:
 
-2.  You will see 3 lines waiting for your keys. Change them to your own values:
+```bash
+cd backend/src/main/resources
+cp application.properties.example application.properties
+```
 
-    ```properties
-    # 1. Get a free API Key from alchemy.com (Select 'Ethereum Sepolia')
-    web3.rpc-url=https://eth-sepolia.g.alchemy.com/v2/YOUR_ALCHEMY_KEY
-    
-    # 2. Your Wallet Private Key (Must have some Sepolia ETH)
-    web3.private-key=YOUR_PRIVATE_KEY_HERE
-    
-    # 3. The Smart Contract Address (Already set, but checking doesn't hurt)
-    web3.contract-address=0xf8e81D47203A594245E36C48e151709F0C19fBe8
-    ```
+Then edit `application.properties` with your actual values:
+```properties
+web3.rpc-url=https://eth-sepolia.g.alchemy.com/v2/YOUR_ALCHEMY_KEY
+web3.private-key=YOUR_METAMASK_PRIVATE_KEY
+web3.contract-address=YOUR_DEPLOYED_CONTRACT_ADDRESS
+```
 
----
+**Where to get these:**
+- **Alchemy Key**: Sign up at [alchemy.com](https://www.alchemy.com/) (free)
+- **Private Key**: Export from MetaMask (Account Details > Export Private Key)
+- **Contract Address**: Deploy `contracts/InfluencerCampaign.sol` via Remix
 
-## 🧠 STEP 2: Run the Backend (Server)
+### 3️⃣ Run Backend
+```bash
+cd backend
+mvn clean install
+mvn spring-boot:run
+```
+Backend runs on: `http://localhost:8082`
 
-Open your **Terminal** (Command Prompt) and run these commands **one by one**:
-
-1.  Go into the backend folder:
-    ```bash
-    cd backend
-    ```
-
-2.  Install all Java libraries (do this once):
-    ```bash
-    mvn clean install
-    ```
-
-3.  Start the server:
-    ```bash
-    mvn spring-boot:run
-    ```
-
-✅ **Success?** You will see a message saying: `Connected to Contract: 0xf8e...` and `Started InfluencerMarketingApplication`.
-❌ **Keep this terminal open!** Do not close it.
-
----
-
-## 🎨 STEP 3: Run the Frontend (Website)
-
-Open a **NEW Terminal window** (keep the backend one running) and run these:
-
-1.  Go into the frontend folder:
-    ```bash
-    cd frontend
-    ```
-
-2.  Install all JavaScript libraries (do this once):
-    ```bash
-    npm install
-    ```
-
-3.  Start the website:
-    ```bash
-    npm run dev
-    ```
-
-✅ **Success?** It will say: `Local: http://localhost:5173/`.
-👉 Open that link in your Chrome browser.
+### 4️⃣ Run Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Frontend runs on: `http://localhost:5173`
 
 ---
 
-## 🎮 How to Test (For your Partner)
+## 📚 Documentation
 
-1.  **Connect Wallet**:
-    *   Click the "Connect Wallet" button.
-    *   **MetaMask** will pop up. Approve the connection.
-    *   *Note*: Ensure your MetaMask is on the **Sepolia Testnet**.
-
-2.  **Join the Campaign**:
-    *   In the text box, type your X (Twitter) handle.
-    *   ⚠️ **IMPORTANT**: You MUST include the `@` symbol (e.g., `@omm_43`).
-    *   Click "Join Campaign".
-    *   Confirm the transaction in MetaMask.
-    *   Wait ~15 seconds for the blockchain to update. The UI will change to "Participating".
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Complete technical architecture
+- **[Smart Contract](./contracts/InfluencerCampaign.sol)** - Solidity code
 
 ---
 
-## 📂 Project Structure (For Reference)
+## 🔐 Security Best Practices
 
-*   `backend/`: The Java Logic (Spring Boot + Web3j).
-*   `frontend/`: The Website (React + Tailwind).
-*   `contracts/`: The Smart Contract code (`InfluencerCampaign.sol`).
+**Never commit these files:**
+- ❌ `application.properties` (contains secrets)
+- ❌ `.env` files
+- ❌ Private keys
+- ❌ API keys
+
+**Always use:**
+- ✅ `application.properties.example` (template with placeholders)
+- ✅ Environment variables for production
+- ✅ `.gitignore` to exclude secrets
 
 ---
 
-## 🛠 Troubleshooting Common Errors
+## 🏗️ Project Structure
 
-*   **Alert: "Please correct twitter handle format"**: 
-    *   You forgot the `@`. Type `@username`.
-*   **Terminal Error: "mvn: command not found"**: 
-    *   You need to install **Maven** and **Java**.
-*   **Terminal Error: "npm: command not found"**: 
-    *   You need to install **Node.js**.
-*   **Backend Error: "Transaction Reverted"**: 
-    *   Your wallet (Private Key) has 0 Sepolia ETH. Go to a **Sepolia Faucet** to get free test money.
+```
+BrainStroming/
+├── backend/                 # Java Spring Boot
+│   ├── src/main/java/      # Business logic
+│   └── src/main/resources/
+│       └── application.properties.example  # Config template
+├── frontend/               # React + Vite
+│   └── src/
+├── contracts/              # Solidity smart contracts
+└── ARCHITECTURE.md         # Technical documentation
+```
+
+---
+
+## 🎯 Features
+
+- ✅ Blockchain-based campaign management
+- ✅ Automatic ETH payments to influencers
+- ✅ MetaMask wallet integration
+- ✅ Sepolia testnet support
+- ✅ Real-time verification (mock)
+
+---
+
+## 🔮 Future Enhancements
+
+- [ ] Chainlink DON integration for decentralized verification
+- [ ] Multi-campaign factory pattern
+- [ ] Real X (Twitter) API integration
+- [ ] NFT badges for top performers
+
+---
+
+## 📞 Support
+
+For setup issues, check:
+1. You created `application.properties` from the example
+2. Your Alchemy key is valid
+3. Your MetaMask is on Sepolia network
+4. You have Sepolia ETH for gas fees
+
+---
+
+## ⚖️ License
+
+MIT License - See LICENSE file for details
